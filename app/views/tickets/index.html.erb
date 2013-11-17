@@ -1,49 +1,55 @@
-<h1>Those are your tickets</h1>
+<header class="row"><h1>Those are your tickets</h1></header>
+<section class="row">
+  <article class="column_6">
+    <table>
+      <thead>
+        <tr>
+          <th>Origin</th>
+          <th>Destination</th>
+          <th>Transportation type</th>
+          <th>Transportation</th>
+          <th>Seat</th>
+          <th>Extra information</th>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
 
-<table>
-  <thead>
-    <tr>
-      <th>Origin</th>
-      <th>Destination</th>
-      <th>Transportation type</th>
-      <th>Transportation</th>
-      <th>Seat</th>
-      <th>Extra information</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
+      <tbody>
 
-  <tbody>
-
-    <% @tickets.each do |ticket| %>
-      <tr>
-        <td><%= ticket.origin %></td>
-        <td><%= ticket.destination %></td>
-        <td><%= ticket.transportation_type %></td>
-        <td><%= ticket.transportation_id %></td>
-        <td><%= ticket.seat %></td>
-        <td><%= ticket.extra_information %></td>
-        <td><%= link_to 'Show', ticket %></td>
-        <td><%= link_to 'Edit', edit_ticket_path(ticket) %></td>
-        <td><%= link_to 'Destroy', ticket, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-<%= link_to 'New Ticket', new_ticket_path %>
-
-<h1>This is your route</h1>
-
-<% i = 0 %>
-<% while i<Ticket.all.length%>
-  <p>Take the <%= @tickets_ordered[i].transportation_id %> <%= @tickets_ordered[i].transportation_type %> from <%= @tickets_ordered[i].origin%> to <%= @tickets_ordered[i].destination%>. 
-  <% if @tickets_ordered[i].seat.size > i %> Sit in seat <%= @tickets_ordered[i].seat%>. 
-  <%end%>
-  <%= @tickets_ordered[i].extra_information%></p>
-  <% i += 1 %>
-<% end %>
+        <% @tickets.each do |ticket| %>
+          <tr>
+            <td><%= ticket.origin %></td>
+            <td><%= ticket.destination %></td>
+            <td><%= ticket.transportation_type %></td>
+            <td><%= ticket.transportation_id %></td>
+            <td><%= ticket.seat %></td>
+            <td><%= ticket.extra_information %></td>
+            <td><%= link_to 'Show', ticket %></td>
+            <td><%= link_to 'Edit', edit_ticket_path(ticket) %></td>
+            <td><%= link_to 'Destroy', ticket, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <%= link_to 'New Ticket', new_ticket_path %>
+  </article>
+</section>
 
 
-
+<section class="row margin-top">
+  <header class="column_9 bck dark color white padding"><h1>This is your route</h1></header>
+  <article class="column_9 bck light padding">
+    <% i = 0 %>
+    <% while i<Ticket.all.length%>
+    <p> * Take the <%= @tickets_ordered[i].transportation_id %> <%= @tickets_ordered[i].transportation_type %> from <%= @tickets_ordered[i].origin%> to <%= @tickets_ordered[i].destination%>. 
+    <% if @tickets_ordered[i].seat.size > 0 %> Sit in seat <%= @tickets_ordered[i].seat%>. 
+    <% else %> No seat assignment.
+    <%end%>
+    <%= @tickets_ordered[i].extra_information%></p>
+    <br>
+    <% i += 1 %>
+  <% end %>
+  </article>
+</section>
