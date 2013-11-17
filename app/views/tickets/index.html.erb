@@ -11,8 +11,6 @@
           <th>Seat</th>
           <th>Extra information</th>
           <th></th>
-          <th></th>
-          <th></th>
         </tr>
       </thead>
 
@@ -26,14 +24,13 @@
             <td><%= ticket.transportation_id %></td>
             <td><%= ticket.seat %></td>
             <td><%= ticket.extra_information %></td>
-            <td><%= link_to 'Show', ticket %></td>
-            <td><%= link_to 'Edit', edit_ticket_path(ticket) %></td>
-            <td><%= link_to 'Destroy', ticket, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <td><%= link_to 'Show', trip_tickets_path(ticket) %></td>
+
           </tr>
         <% end %>
       </tbody>
     </table>
-    <%= link_to 'New Ticket', new_ticket_path %>
+    <%= link_to 'New Ticket', new_trip_ticket_path %>
   </article>
 </section>
 
