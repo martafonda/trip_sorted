@@ -1,0 +1,41 @@
+<%= form_for(@ticket) do |f| %>
+  <% if @ticket.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@ticket.errors.count, "error") %> prohibited this ticket from being saved:</h2>
+
+      <ul>
+      <% @ticket.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :origin %><br>
+    <%= f.text_field :origin %>
+  </div>
+  <div class="field">
+    <%= f.label :destination %><br>
+    <%= f.text_field :destination %>
+  </div>
+  <div class="field">
+    <%= f.label :transportation_type %><br>
+    <%= f.text_field :transportation_type %>
+  </div>
+  <div class="field">
+    <%= f.label :transportation_id %><br>
+    <%= f.text_field :transportation_id %>
+  </div>
+  <div class="field">
+    <%= f.label :seat %><br>
+    <%= f.text_field :seat %>
+  </div>
+  <div class="field">
+    <%= f.label :extra_information %><br>
+    <%= f.text_field :extra_information %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
