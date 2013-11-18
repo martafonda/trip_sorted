@@ -1,6 +1,5 @@
 class TicketsController < ApplicationController
   before_action :set_ticket, only: [:show, :edit, :update, :destroy]
-    before_action :set_trip, except: [:show, :edit, :update, :destroy]
   before_action :order, only: :index
 
   # GET /tickets
@@ -24,7 +23,6 @@ class TicketsController < ApplicationController
   # GET /tickets/1/edit
   def edit
     @ticket = Ticket.find(params[:id])
-    @trip = @ticket.trip
   end
 
   # POST /tickets
@@ -94,8 +92,5 @@ class TicketsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def ticket_params
       params.require(:ticket).permit(:origin, :destination, :transportation_type, :transportation_id, :seat, :extra_information)
-    end
-    def set_trip
-      @trip = Trip.find(params[:trip_id])
     end
 end

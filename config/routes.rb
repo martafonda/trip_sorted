@@ -1,7 +1,7 @@
 TripSorter::Application.routes.draw do
-  resources :trips do
+
     resources :tickets
-  end
+
 
   
 
