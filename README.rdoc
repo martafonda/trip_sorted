@@ -12,7 +12,7 @@ Para la entrada de datos he usado el new de la entidad Tickets, determinando los
 
 Para resolver la ordenación de los diferentes tickets, he realizado un algoritmo como el siguiente:
 
-<tt>
+
  def order
     @tickets_ordered = []
     @origin = Ticket.pluck(:origin)
@@ -29,7 +29,7 @@ Para resolver la ordenación de los diferentes tickets, he realizado un algoritm
     end
     return @tickets_ordered
   end
-</tt>
+
 
 Se puede observar como:
 
