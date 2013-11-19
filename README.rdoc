@@ -1,28 +1,43 @@
-== README
+== TRIP SORTER
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+-- Información general del proyecto
+Para la entrada de datos he usado el new de la entidad Tickets, determinando los campos necesarios para rellenar la info del ticket. 
 
-Things you may want to cover:
+* Origin
+* Destination
+* Transportation_type
+* Transportation_id
+* Seat
+* Extra Information
 
-* Ruby version
+Para resolver la ordenación de los diferentes tickets, he realizado un algoritmo como el siguiente:
 
-* System dependencies
+<tt>
+ def order
+    @tickets_ordered = []
+    @origin = Ticket.pluck(:origin)
+    @destination = Ticket.pluck(:destination)
+    @origin.each do |origin|
+      if @destination.exclude?(origin)
+            @tickets_ordered << Ticket.find_by(origin: origin)
+      end
+    end
+    i = 0
+    while i < Ticket.all.length
+      @tickets_ordered << Ticket.find_by(origin: @tickets_ordered[i].destination)
+      i += 1
+    end
+    return @tickets_ordered
+  end
+</tt>
 
-* Configuration
+Se puede observar como:
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- En primer lugar se han recogido los orígenes y destinos en dos arrays.
+- Después se comprueba la existencia en el array de destinos de cada uno de los orígenes.
+- Si alguno de ellos no se encuentra en ese array implica que es el origen de la ruta total.
+- Se asigna a la primera posición y desde ahí se va a haciendo una comparación del destino posición a posición con los diversos orígenes.
+- Cuando se encuentra un ticket nuevo cuyo origen coincide con el destino del ticket anterior, se añade a la ruta. 
+- La variable <tt>@tickets_ordered</tt> contiene el resultado de la ruta y se muestra en el index.
 
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
